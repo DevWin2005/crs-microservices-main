@@ -7,6 +7,7 @@ import {
 
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import ApiKeyPage from './pages/ApiKeyPage';
 
 import LoginPage from './pages/LoginPage';
 import CoursesPage from './pages/CoursesPage';
@@ -64,6 +65,14 @@ function App() {
               </ProtectedRoute>
             }
 />
+            <Route
+                path="/admin/api-keys"
+                element={
+                    <ProtectedRoute requiredRole="ADMIN">
+                        <ApiKeyPage />
+                    </ProtectedRoute>
+                }
+            />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

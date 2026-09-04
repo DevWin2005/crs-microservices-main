@@ -42,6 +42,14 @@ spring:
               predicates:
                 - Path=/api/auth/**
 
+            - id: auth-service-apikeys
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/api-keys,/api/api-keys/**
+              filters:
+                - RewritePath=/api/api-keys/(?<segment>.*), /api-keys/${segment}
+                - RewritePath=/api/api-keys, /api-keys
+
             # =========================
             # COURSE SERVICE - LIST
             # =========================
@@ -93,8 +101,3 @@ spring:
                 - RewritePath=/api/public/courses, /courses
 
 
-# =========================
-# PARTNER API KEY
-# =========================
-partner:
-  api-key: crs-partner-key-2026
